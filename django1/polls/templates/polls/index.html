@@ -1,0 +1,12 @@
+index page
+
+{% if latest_question_list_to_html %}
+    <ul>
+    {% for question in latest_question_list_to_html %}
+        <li><a href="{% url 'polls:detail_vs_view' question.id %}">{{ question.question_text }}</a></li>
+        {{question}}  {{ question.id }}
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No polls are available.</p>
+{% endif %}

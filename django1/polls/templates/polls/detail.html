@@ -1,0 +1,23 @@
+detail page
+
+<h1>{{ question.question_text }}</h1>
+<h2>ID: {{ question.id }}</h2>
+<h2>PK: {{ question.pk }}</h2>
+<h2>pub date: {{ question.pub_date }}</h2>
+
+
+
+{% if error_message %} <h1><p style="color: red"><strong>{{ error_message }} error message if shows</strong></p></h1>{% endif %}
+
+
+<form action="{% url 'polls:vote' question.id %}" method="post">
+{% csrf_token %}
+{% for choice in question.choice_set.all %}
+    <div>
+        <input type="radio" name="choice" id="choice{{ forloop.counter }}" value="{{ choice.id }}">
+        forloop.counter => {{ forloop.counter }}  id is : {{ choice.id }} --> current vote Count: {{choice.votes}}
+        <label for="choice{{ forloop.counter }}">--- Label: {{ choice.choice_text }}</label>
+    </div>
+{% endfor %}
+<input type="submit" value="Vote">
+</form>
