@@ -1,5 +1,8 @@
 index page
 
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'polls/style.css' %}">
+
 {% if latest_question_list_to_html %}
     <ul>
     {% for question in latest_question_list_to_html %}
